@@ -1,0 +1,13 @@
+install.packages("readxl")
+install.packages(ggmap)
+library(readxl)
+library(ggmap)
+df<-read.csv("대형마트좌표.csv")
+register_google(key="AIzaSyD8b4c8lQYlpifNI31SW8sShnuDhlEg24U")
+loc <- read.csv("대형마트좌표.csv", header = TRUE) 
+head(loc)
+kor <- get_map("daegu", zoom = 8, maptype = "roadmap")
+korMap <- ggmap(kor)
+korMap 
+korMap + geom_point(data = loc, aes(x = LON, y = LAT), size = 0.9, colour = "red")
+
